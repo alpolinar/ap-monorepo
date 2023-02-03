@@ -1,0 +1,10 @@
+-- Up
+CREATE TABLE Orders (
+	id TEXT,
+	user_id TEXT,
+	products TEXT,
+	CONSTRAINT ORDERS_PK PRIMARY KEY (id),
+	CONSTRAINT orders_fk_user_id FOREIGN KEY (id) REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- Down
+DROP TABLE Orders;
