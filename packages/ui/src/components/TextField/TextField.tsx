@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import clsx from "clsx";
 import { styled, Theme } from "@mui/material/styles";
 import MuiTextField, {
@@ -80,7 +80,7 @@ export interface TextFieldProps
     size?: "small" | "medium" | "large" | "xlarge";
 }
 
-function TextField(props: TextFieldProps) {
+function CustomTextField(props: TextFieldProps) {
     const {
         InputProps = {},
         InputLabelProps,
@@ -124,4 +124,4 @@ function TextField(props: TextFieldProps) {
     );
 }
 
-export default styled(TextField)(styles);
+export const TextField = styled(CustomTextField)(styles);

@@ -1,13 +1,15 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import Typography from "@/components/Typography";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
 import AppForm from "@/views/common/AppForm";
 import Footer from "@/views/common/Footer";
-import Header from "@/views/common/Header";
-import { CustomInputComponent } from "@/components/Field";
+
+import {
+    Typography,
+    Button,
+    Loading,
+    CustomInputComponent,
+} from "@ap-monorepo/ui";
 
 import * as Yup from "yup";
 import { Formik, FormikHelpers, Form, Field } from "formik";

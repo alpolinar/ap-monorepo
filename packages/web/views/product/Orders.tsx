@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import Typography from "@/components/Typography";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
+import { Typography, Loading } from "@ap-monorepo/ui";
 
 import ProductContainer from "./ProductContainer";
 import OrdersCard from "./OrdersCard";

@@ -4,7 +4,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
-import Typography from "@/components/Typography";
+
+import { Typography } from "@ap-monorepo/ui";
 
 type ProductCardProps = {
     id?: string;

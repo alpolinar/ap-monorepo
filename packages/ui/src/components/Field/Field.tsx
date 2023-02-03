@@ -1,4 +1,5 @@
-import TextField from "@/components/TextField";
+import React from "react";
+import { TextField } from "../TextField";
 
 type FieldType = {
     field: {

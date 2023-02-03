@@ -2,12 +2,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
-import Header from "@/views/common/Header";
 import Hero from "@/views/homepage/Hero";
 import Footer from "@/views/common/Footer";
 import ProductCTA from "@/views/homepage/ProductCTA";
 import ProductSmokingHero from "@/views/homepage/ProductSmokingHero";
-import FAppBar from "@/components/figma/AppBar";
 
 import { useAuthentication } from "@/store/authentication/authentication.hook";
 import { User } from "@/store/authentication/authentication.model";

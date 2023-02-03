@@ -3,12 +3,9 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import Typography from "@/components/Typography";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
+import { Typography, Button, CustomInputComponent } from "@ap-monorepo/ui";
 
 import { FormikHelpers, Form, Field, FormikProps } from "formik";
-import { CustomInputComponent } from "@/components/Field";
 
 export type FormValues = {
     name: string;
