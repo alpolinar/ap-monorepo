@@ -1,10 +1,21 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Req,
+} from '@nestjs/common';
+import { Request, query } from 'express';
 import { ProductService } from './product.service';
-import { CreateProductDto } from './dto';
+import { CreateProductDto, UpdateProductDto } from './dto';
 
 @Controller('product')
 export class ProductController {
-  constructor(private productService: ProductService) {}
+  constructor(private readonly productService: ProductService) {}
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
@@ -14,5 +25,22 @@ export class ProductController {
   @Get()
   findAll() {
     return this.productService.findAll();
+  }
+
+  @Get('find')
+  findOne(@Query('id') id: string) {
+    return this.productService.findOne(id);
+  }
+
+  @Patch()
+  update(@Query('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+    console.log('update');
+    console.log(id, updateProductDto);
+    return this.productService.update(id, updateProductDto);
+  }
+
+  @Delete()
+  remove(@Query('id') id: string) {
+    return this.productService.remove(id);
   }
 }

@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductDto, convertProductToProductDto } from './dto';
+import {
+  CreateProductDto,
+  UpdateProductDto,
+  convertProductToProductDto,
+} from './dto';
 import { PrismaService } from 'src/prisma.service';
 
-@Injectable({})
+@Injectable()
 export class ProductService {
   constructor(private prismaService: PrismaService) {}
+
   async create(createProductDto: CreateProductDto) {
     const product = await this.prismaService.product.create({
       data: {
@@ -16,6 +21,26 @@ export class ProductService {
 
   async findAll() {
     const products = await this.prismaService.product.findMany();
-    return products.map((p) => convertProductToProductDto(p));
+    return products.map((product) => convertProductToProductDto(product));
+  }
+
+  async findOne(id: string) {
+    const product = await this.prismaService.product.findUniqueOrThrow({
+      where: { id },
+    });
+    return convertProductToProductDto(product);
+  }
+
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    const updateProduct = await this.prismaService.product.update({
+      where: { id },
+      data: { ...updateProductDto },
+    });
+    return convertProductToProductDto(updateProduct);
+  }
+
+  async remove(id: string) {
+    await this.prismaService.product.delete({ where: { id } });
+    return { status: 'success' };
   }
 }
