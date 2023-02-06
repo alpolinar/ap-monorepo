@@ -1,7 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Paper from "../../components/Paper";
 import Container from "@mui/material/Container";
+
+import { Paper } from "@ap-monorepo/ui";
 
 export default function ProductContainer(
     props: React.HTMLAttributes<HTMLDivElement>

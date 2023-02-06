@@ -14,7 +14,6 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { ProductData } from "@/db/sqlite/db-types";
 
 import FButton from "./Button";
-import Button from "../Button";
 
 import { useCart } from "@/store/cart/cart.hook";
 
@@ -60,6 +59,7 @@ export default function FCard({
                                     minWidth: 0,
                                     boxShadow: 1,
                                 }}
+                                onClick={handleAddToCart}
                             >
                                 <AddShoppingCartIcon
                                     sx={{
@@ -67,7 +67,6 @@ export default function FCard({
                                         p: 1.75,
                                         borderRadius: "50%",
                                     }}
-                                    onClick={handleAddToCart}
                                 />
                             </IconButton>
                         </Box>

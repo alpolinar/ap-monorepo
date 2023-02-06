@@ -5,10 +5,9 @@ import Grid from "@mui/material/Grid";
 
 import AppContainer from "@/views/common/AppContainer";
 
-import Typography from "@/components/Typography";
+import { Typography } from "@ap-monorepo/ui";
 
 import FCard from "@/components/figma/Card";
-import ProductCard from "./ProductCard";
 
 import { ProductData } from "@/db/sqlite/db-types";
 

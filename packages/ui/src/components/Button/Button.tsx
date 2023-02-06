@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import MuiButton, { ButtonProps } from "@mui/material/Button";
 
@@ -22,10 +22,8 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
     }),
 }));
 
-function Button<C extends React.ElementType>(
+export function Button<C extends React.ElementType>(
     props: ButtonProps<C, { component?: C }>
 ) {
     return <ButtonRoot {...props} />;
 }
-
-export default Button;

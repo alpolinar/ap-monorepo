@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     remotePatterns: [{
       protocol: "https",
@@ -8,7 +8,8 @@ const nextConfig = {
       port: "",
       pathname: "/**"
     }]
-  }
+  },
+  transpilePackages: ["@ap-monorepo/ui"]
 }
 
 module.exports = nextConfig

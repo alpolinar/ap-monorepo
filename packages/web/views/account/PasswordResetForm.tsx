@@ -1,13 +1,9 @@
-import * as React from "react";
+import React from "react";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import Typography from "@/components/Typography";
 import Footer from "@/views/common/Footer";
 import AppForm from "../common/AppForm";
-import Button from "@/components/Button";
-import TextField from "@/components/TextField";
-import Grid from "@mui/material/Grid";
-import Header from "@/views/common/Header";
+
+import { Typography, Button, TextField } from "@ap-monorepo/ui";
 
 export default function ForgotPasswordForm() {
     return (

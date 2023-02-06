@@ -10,7 +10,7 @@ interface ILoading {
     width: number;
 }
 
-export default function Loading({ type, color, height, width }: ILoading) {
+export function Loading({ type, color, height, width }: ILoading) {
     return (
         <Grid container justifyContent="center">
             <Grid item>

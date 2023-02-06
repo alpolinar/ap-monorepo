@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { styled, Theme } from "@mui/material/styles";
 import MuiTypography, { TypographyProps } from "@mui/material/Typography";
 
@@ -76,7 +76,9 @@ const variantMapping = {
     subtitle1: "h3",
 };
 
-function Typography<C extends React.ElementType>(
+const TypographyRoot = styled(MuiTypography)(styles);
+
+export function Typography<C extends React.ElementType>(
     props: TypographyProps<C, { component?: C }> & ExtraTypographyProps
 ) {
     const { children, variant, marked = "none", ...other } = props;
@@ -87,15 +89,13 @@ function Typography<C extends React.ElementType>(
     }
 
     return (
-        <MuiTypography
+        <TypographyRoot
             variantMapping={variantMapping}
             variant={variant}
             {...other}
         >
             {children}
             {markedClassName ? <span className={markedClassName} /> : null}
-        </MuiTypography>
+        </TypographyRoot>
     );
 }
-
-export default styled(Typography)(styles);

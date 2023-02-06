@@ -1,12 +1,13 @@
+import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Box from "@mui/material/Box";
-import Typography from "./Typography";
+import { Typography } from "../Typography";
 
 type CartItems = {
     items: number;
 };
 
-export default function CartIcon({ items }: CartItems) {
+export function CartIcon({ items }: CartItems) {
     return (
         <Box component="div" position="relative">
             <ShoppingCartIcon color="primary" />

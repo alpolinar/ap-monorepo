@@ -1,4 +1,3 @@
-import Header from "@/views/common/Header";
 import Footer from "@/views/common/Footer";
 import ProductsPage from "@/views/product/Products";
 

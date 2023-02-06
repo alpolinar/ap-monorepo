@@ -1,0 +1,13 @@
+### Get all products
+GET http://localhost:3001/product
+
+### Create new product
+POST http://localhost:3001/product
+Content-Type: application/json
+
+{
+    name: "Test",
+    image: "image1.jpg",
+    description: "Description",
+    price: 123
+}

@@ -48,7 +48,7 @@ interface ExtraSnackbarProps {
     closeFunc?: () => void;
 }
 
-function Snackbar(props: SnackbarProps & ExtraSnackbarProps) {
+function CustomSnackbar(props: SnackbarProps & ExtraSnackbarProps) {
     const { message, closeFunc, ...other } = props;
     const classes = {
         info: "MuiSnackbarContent-info",
@@ -82,4 +82,4 @@ function Snackbar(props: SnackbarProps & ExtraSnackbarProps) {
     );
 }
 
-export default styled(Snackbar)(styles);
+export const Snackbar = styled(CustomSnackbar)(styles);

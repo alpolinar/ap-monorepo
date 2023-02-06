@@ -8,7 +8,8 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { useCart } from "@/store/cart/cart.hook";
-import TextField from "@/components/TextField";
+
+import { TextField } from "@ap-monorepo/ui";
 
 import { ProductData } from "@/db/sqlite/db-types";
 

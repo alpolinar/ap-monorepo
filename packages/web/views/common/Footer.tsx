@@ -3,10 +3,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
-import Typography from "@/components/Typography";
-import TextField from "@/components/TextField";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
+
+import { Typography, TextField } from "@ap-monorepo/ui";
 
 function Copyright() {
     return (

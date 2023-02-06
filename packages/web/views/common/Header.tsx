@@ -1,9 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import AppBar from "@/components/AppBar";
-import Toolbar from "@/components/Toolbar";
-import Button from "@/components/Button";
+import { AppBar, Button, Toolbar } from "@ap-monorepo/ui";
+
 import CartDrawer from "../product/CartDrawer";
 
 import { Box, Link } from "@mui/material";
