@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GetServerSidePropsContext } from "next";
 
 import AppContainer from "@/views/common/AppContainer";
@@ -6,29 +6,7 @@ import Footer from "@/views/common/Footer";
 
 import { Typography } from "@ap-monorepo/ui";
 
-import { User } from "@/store/authentication/authentication.model";
-import { useAuthentication } from "@/store/authentication/authentication.hook";
-
-import { authRefresh } from "@/utils/fetching";
-import Cookies from "js-cookie";
-
-type TermsProps = {
-    token: string;
-    user?: User | null;
-};
-
-export default function Terms({ token, user }: TermsProps) {
-    const userAuth = useAuthentication();
-
-    useEffect(() => {
-        if (token !== "" && user) {
-            Cookies.set("token", token, {
-                secure: true,
-                sameSite: "none",
-            });
-            userAuth.setUser(user);
-        }
-    }, []);
+export default function Terms() {
     return (
         <>
             <AppContainer>
@@ -59,12 +37,8 @@ export default function Terms({ token, user }: TermsProps) {
 
 export async function getServerSideProps({ req }: GetServerSidePropsContext) {
     console.log("Server Side Props");
-    const token = req.cookies?.token ?? "";
-    const user = token !== "" ? await authRefresh(token) : {};
+
     return {
-        props: {
-            token,
-            user,
-        },
+        props: {},
     };
 }

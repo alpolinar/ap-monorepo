@@ -1,44 +1,22 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 
 import Hero from "@/views/homepage/Hero";
 import Footer from "@/views/common/Footer";
 import ProductCTA from "@/views/homepage/ProductCTA";
 import ProductSmokingHero from "@/views/homepage/ProductSmokingHero";
 
-import { useAuthentication } from "@/store/authentication/authentication.hook";
-import { User } from "@/store/authentication/authentication.model";
-
 import { FormikHelpers } from "formik";
 
-import Cookies from "js-cookie";
-
 import { GetServerSidePropsContext } from "next";
-import { authRefresh } from "@/utils/fetching";
-
-type HomeProps = {
-    token: string;
-    user?: User | null;
-};
 
 type FormValues = {
     search: string;
 };
 
-export default function Home({ token, user }: HomeProps) {
-    const userAuth = useAuthentication();
+export default function Home() {
     const router = useRouter();
-
-    useEffect(() => {
-        if (token !== "" && user) {
-            Cookies.set("token", token, {
-                secure: true,
-                sameSite: "none",
-            });
-            userAuth.setUser(user);
-        }
-    }, []);
 
     function handleSubmit(
         values: FormValues,
@@ -72,14 +50,10 @@ export default function Home({ token, user }: HomeProps) {
     );
 }
 
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
     console.log("Server Side Props");
-    const token = req.cookies?.token ?? "";
-    const user = token !== "" ? await authRefresh(token) : {};
+
     return {
-        props: {
-            token,
-            user,
-        },
+        props: {},
     };
 }
