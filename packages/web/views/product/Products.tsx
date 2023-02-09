@@ -29,10 +29,10 @@ export default function ProductsPage({ products }: ProductPageProps) {
                         container
                         rowGap={4}
                         columnSpacing={4}
-                        justifyContent="space-evenly"
+                        direction="row"
                     >
                         {products?.map((product) => (
-                            <Grid item key={product.id}>
+                            <Grid item key={product.id} xs={12} sm={6} md={4}>
                                 <FCard
                                     id={product.id}
                                     image={product.image}

@@ -8,8 +8,8 @@ export type ProductDto = {
   price: number;
 };
 
-export const convertProductToProductDto = (p: Product): ProductDto => {
-  const { id, name, image, description, price } = p;
+export const convertProductToProductDto = (product: Product): ProductDto => {
+  const { id, name, image, description, price } = product;
   return {
     id,
     name,

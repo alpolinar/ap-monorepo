@@ -2,7 +2,10 @@
 GET http://localhost:3001/product
 
 ### Get product
-GET http://localhost:3001/product/find?id=c624c957-60e4-4ce2-afda-07f63b6176f3
+GET http://localhost:3001/product/find?id=98f0932b-f547-4cc1-8a0c-a56bcd5b169b
+
+### Search product
+GET http://localhost:3001/product/search?keyword=asia
 
 ### Create new product
 POST http://localhost:3001/product
@@ -28,3 +31,5 @@ Content-Type: application/json
 
 ### Delete a product
 DELETE http://localhost:3001/product?id=c624c957-60e4-4ce2-afda-07f63b6176f3
+
+

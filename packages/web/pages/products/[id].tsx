@@ -8,7 +8,7 @@ import { ProductData } from "@/db/sqlite/db-types";
 
 import { useCart } from "@/store/cart/cart.hook";
 
-import { getProduct } from "@/utils/fetching";
+import axios from "axios";
 
 type ProductProps = {
     product: ProductData;
@@ -36,7 +36,11 @@ export async function getServerSideProps({
 }: GetServerSidePropsContext) {
     console.log("Server Side Props");
     const id: string = query.id as string;
-    const product: ProductData = await getProduct(id);
+    const response = await axios.get(
+        `http://localhost:3001/product/find?id=${id}`
+    );
+    const product = response.data;
+
     return {
         props: {
             product,

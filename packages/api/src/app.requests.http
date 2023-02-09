@@ -1,0 +1,24 @@
+### GET /account
+GET http://localhost:3001/account
+# result -> { "statusCode": 401, "message": "Unauthorized" }
+
+### auth/login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+    "username": "new@test.com",
+    "password": "password!"
+}
+
+### GET /account using access_token from auth/login
+GET http://localhost:3001/account
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODRhMjNlOC1jNTg1LTRiODktOWE5Ny1hZWZkNjRmNzM1MmMiLCJ1c2VybmFtZSI6Im5ld0B0ZXN0LmNvbSIsImlhdCI6MTY3NTk2NTYyMiwiZXhwIjoxNjc1OTY1NjM3fQ.4mm73Np7wGw1YvSzHPouqSML1B7DV_gwunzFFft7YmA
+
+### /logout
+GET http://localhost:3001/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODRhMjNlOC1jNTg1LTRiODktOWE5Ny1hZWZkNjRmNzM1MmMiLCJ1c2VybmFtZSI6Im5ld0B0ZXN0LmNvbSIsImlhdCI6MTY3NTk2NTE3NSwiZXhwIjoxNjc1OTY2MDc1fQ.8F45zL75qMPI2BoxDa1Kzin6MR6mRGyFvE5vxt0ZlZs
+
+### /refresh
+GET http://localhost:3001/refresh
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODRhMjNlOC1jNTg1LTRiODktOWE5Ny1hZWZkNjRmNzM1MmMiLCJ1c2VybmFtZSI6Im5ld0B0ZXN0LmNvbSIsImlhdCI6MTY3NTk2NTYyMiwiZXhwIjoxNjc2NTcwNDIyfQ.nkDfnJtJssfu1ySSUbF560dP0M2mTEQPh6t6pa3yiEg

@@ -6,7 +6,7 @@ import { GetServerSidePropsContext } from "next";
 
 import { ProductData } from "@/db/sqlite/db-types";
 
-import { fetchProducts, searchProduct } from "@/utils/fetching";
+import axios from "axios";
 
 type ProductProps = {
     products: Array<ProductData>;
@@ -23,10 +23,12 @@ export default function Products({ products }: ProductProps) {
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
     console.log("Server Side Props");
-
-    const products: Array<ProductData> = query.hasOwnProperty("search")
-        ? await searchProduct(query?.search)
-        : await fetchProducts();
+    const baseUrl = "http://localhost:3001/product";
+    const endpoint = query.hasOwnProperty("search")
+        ? `/search?keyword=${query?.search}`
+        : "";
+    const response = await axios.get(baseUrl + endpoint);
+    const products = response.data;
     return {
         props: {
             products,
