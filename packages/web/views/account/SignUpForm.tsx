@@ -2,14 +2,16 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import Typography from "@/components/Typography";
 import Footer from "@/views/common/Footer";
 import AppForm from "@/views/common/AppForm";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
 import Grid from "@mui/material/Grid";
-import { CustomInputComponent } from "@/components/Field";
-import Header from "@/views/common/Header";
+
+import {
+    Typography,
+    Button,
+    Loading,
+    CustomInputComponent,
+} from "@ap-monorepo/ui";
 
 import * as Yup from "yup";
 import { Formik, FormikHelpers, Form, Field } from "formik";

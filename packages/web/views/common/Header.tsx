@@ -1,9 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import AppBar from "@/components/AppBar";
-import Toolbar from "@/components/Toolbar";
-import Button from "@/components/Button";
+import { AppBar, Button, Toolbar } from "@ap-monorepo/ui";
+
 import CartDrawer from "../product/CartDrawer";
 
 import { Box, Link } from "@mui/material";
@@ -29,7 +28,8 @@ export default function Header() {
     const router = useRouter();
 
     function handleLogout() {
-        Cookies.remove("token");
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
         userAuth.setUser(null);
         router.push("/sign-in");
     }

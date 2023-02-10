@@ -1,0 +1,13 @@
+### Get user by email
+GET http://localhost:3001/user/find?email=test@test.com
+
+### Create user
+POST http://localhost:3001/user
+Content-Type: application/json
+
+{
+    "name": "New User",
+    "password": "password!",
+    "email": "new@test.com",
+    "role": "customer"
+}

@@ -1,13 +1,14 @@
 import React from "react";
+
+import Box from "@mui/material/Box";
+
 import AppContainer from "@/views/common/AppContainer";
-import ProductCard from "./ProductCard";
-import { Container, Grid } from "@mui/material";
+
 import { ProductData } from "@/db/sqlite/db-types";
-import Typography from "@/components/Typography";
-import Image from "next/image";
-import { Box } from "@mui/material";
-import Button from "@/components/Button";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+import { Typography, Button } from "@ap-monorepo/ui";
 
 type ProductPageProps = {
     product: ProductData;

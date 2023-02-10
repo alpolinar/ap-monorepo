@@ -9,14 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Grid from "@mui/material/Grid";
 
-import Typography from "@/components/Typography";
+import { Typography } from "@ap-monorepo/ui";
 import FButton from "./Button";
 
 import CartDrawer from "@/views/product/CartDrawer";
@@ -65,7 +61,8 @@ function ResponsiveAppBar() {
     };
 
     const handleLogout = () => {
-        Cookies.remove("token");
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
         userAuth.setUser(null);
         router.push("/sign-in");
     };

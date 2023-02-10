@@ -1,0 +1,35 @@
+### Get all products
+GET http://localhost:3001/product
+
+### Get product
+GET http://localhost:3001/product/find?id=98f0932b-f547-4cc1-8a0c-a56bcd5b169b
+
+### Search product
+GET http://localhost:3001/product/search?keyword=asia
+
+### Create new product
+POST http://localhost:3001/product
+Content-Type: application/json
+
+{
+    "name": "Test",
+    "image": "image1.jpg",
+    "description": "Description",
+    "price": 123
+}
+### Update product
+PATCH  http://localhost:3001/product?id=c624c957-60e4-4ce2-afda-07f63b6176f3
+Content-Type: application/json
+
+{
+    "name": "Update test",
+    "image": "image123.jpg",
+    "description": "Description321",
+    "price": 100
+}
+
+
+### Delete a product
+DELETE http://localhost:3001/product?id=c624c957-60e4-4ce2-afda-07f63b6176f3
+
+

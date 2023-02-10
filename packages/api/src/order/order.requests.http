@@ -1,0 +1,2 @@
+### Get all orders
+GET http://localhost:3001/orders?id=80ee3d77-e3b0-4ef3-8cfa-3392f039fc0f

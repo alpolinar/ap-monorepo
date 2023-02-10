@@ -1,7 +1,8 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Paper from "../../components/Paper";
+
+import { Paper } from "@ap-monorepo/ui";
 
 export default function AppForm(props: React.HTMLAttributes<HTMLDivElement>) {
     const { children } = props;

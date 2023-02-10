@@ -8,10 +8,9 @@ import { useRouter } from "next/router";
 import { UserRole } from "@/db/sqlite/db-types";
 
 interface User {
-    username: string;
-    email: string;
     password: string;
     name: string;
+    email: string;
     role?: string;
 }
 
@@ -22,11 +21,8 @@ export default function Register() {
         values: FormValues,
         actions: FormikHelpers<FormValues>
     ) {
-        const username = values.email.split("@")[0];
-
         actions.setSubmitting(true);
         const user: User = {
-            username: username,
             email: values.email,
             password: values.password,
             name: `${values.firstName} ${values.lastName}`,
@@ -34,7 +30,7 @@ export default function Register() {
         };
 
         axios
-            .post(`/api/users/create-user`, user)
+            .post(`${process.env.NEXT_PUBLIC_NEST_API}/user`, user)
             .then((response) => {
                 actions.resetForm();
                 router.push("/sign-in");

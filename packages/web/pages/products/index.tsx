@@ -1,36 +1,18 @@
-import Header from "@/views/common/Header";
 import Footer from "@/views/common/Footer";
 import ProductsPage from "@/views/product/Products";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { GetServerSidePropsContext } from "next";
 
-import { User } from "@/store/authentication/authentication.model";
-import { useAuthentication } from "@/store/authentication/authentication.hook";
 import { ProductData } from "@/db/sqlite/db-types";
 
-import Cookies from "js-cookie";
-
-import { authRefresh, fetchProducts, searchProduct } from "@/utils/fetching";
+import axios from "axios";
 
 type ProductProps = {
-    token: string;
-    user?: User | null;
     products: Array<ProductData>;
 };
 
-export default function Products({ token, user, products }: ProductProps) {
-    const userAuth = useAuthentication();
-
-    useEffect(() => {
-        if (token !== "" && user) {
-            Cookies.set("token", token, {
-                secure: true,
-                sameSite: "none",
-            });
-            userAuth.setUser(user);
-        }
-    }, [token]);
+export default function Products({ products }: ProductProps) {
     return (
         <>
             <ProductsPage products={products} />
@@ -39,21 +21,16 @@ export default function Products({ token, user, products }: ProductProps) {
     );
 }
 
-export async function getServerSideProps({
-    req,
-    query,
-}: GetServerSidePropsContext) {
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
     console.log("Server Side Props");
-    const token = req.cookies?.token ?? "";
-    const user = token !== "" ? await authRefresh(token) : {};
-
-    const products: Array<ProductData> = query.hasOwnProperty("search")
-        ? await searchProduct(query?.search)
-        : await fetchProducts();
+    const baseUrl = `${process.env.NEXT_PUBLIC_NEST_API}/product`;
+    const endpoint = query.hasOwnProperty("search")
+        ? `/search?keyword=${query?.search}`
+        : "";
+    const response = await axios.get(baseUrl + endpoint);
+    const products = response.data;
     return {
         props: {
-            token,
-            user,
             products,
         },
     };

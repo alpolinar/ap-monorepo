@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 
-import Header from "@/views/common/Header";
 import Footer from "@/views/common/Footer";
 import OrdersPage from "@/views/product/Orders";
 
@@ -10,24 +9,14 @@ import { User } from "@/store/authentication/authentication.model";
 import { useAuthentication } from "@/store/authentication/authentication.hook";
 import { useCart } from "@/store/cart/cart.hook";
 
-import Cookies from "js-cookie";
-
-import { authRefresh } from "@/utils/fetching";
-
 import { FormikHelpers } from "formik";
 import { FormValues } from "@/views/product/PaymentForm";
 
 import axios from "axios";
 
-type ProductProps = {
-    token: string;
-    user?: User | null;
-};
-
-export default function Orders({ token, user }: ProductProps) {
+export default function Orders() {
     const userAuth = useAuthentication();
     const cart = useCart();
-    const authToken = userAuth.token;
     const router = useRouter();
 
     function handleSubmitOrder(
@@ -38,7 +27,7 @@ export default function Orders({ token, user }: ProductProps) {
         if (!userAuth.user) return actions.setSubmitting(false);
         actions.setSubmitting(true);
         axios
-            .post("/api/orders/submit", {
+            .post(`${process.env.NEXT_PUBLIC_NEST_API}/orders/submit`, {
                 userId: userAuth.user?.id,
                 products: JSON.stringify(cart.cartItems),
             })
@@ -54,17 +43,6 @@ export default function Orders({ token, user }: ProductProps) {
             .catch((err) => console.log(err));
     }
 
-    useEffect(() => {
-        if (token !== "" && user) {
-            Cookies.set("token", token, {
-                secure: true,
-                sameSite: "none",
-            });
-            userAuth.setUser(user);
-            userAuth.setToken(token);
-        }
-    }, [token]);
-
     return (
         <>
             <OrdersPage handleSubmitOrder={handleSubmitOrder} />
@@ -78,13 +56,7 @@ export async function getServerSideProps({
     query,
 }: GetServerSidePropsContext) {
     console.log("Server Side Props");
-    const token = req.cookies?.token ?? "";
-    const user = token !== "" ? await authRefresh(token) : {};
-
     return {
-        props: {
-            token,
-            user,
-        },
+        props: {},
     };
 }

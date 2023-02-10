@@ -27,23 +27,35 @@ export default function Login() {
         actions.setSubmitting(true);
         axios
             .post(
-                `/api/users/auth`,
+                `${process.env.NEXT_PUBLIC_NEST_API}/auth/login`,
                 {
-                    email: values.email,
+                    username: values.email,
                     password: values.password,
                 },
                 {
                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
+                        "Content-Type": "application/json",
                     },
                 }
             )
             .then((response) => {
                 const { id, name, email, role } = response.data.record;
-                Cookies.set("token", response.data.record.id, {
-                    secure: true,
-                    sameSite: "none",
-                });
+                Cookies.set("access_token", response.data.access_token);
+                Cookies.set("refresh_token", response.data.refresh_token);
+
+                localStorage.setItem(
+                    "access_token",
+                    response.data.access_token
+                );
+                localStorage.setItem(
+                    "resfresh_token",
+                    response.data.resfresh_token
+                );
+
+                localStorage.setItem(
+                    "refresh_token",
+                    response.data.refresh_token
+                );
                 userAuth.setUser({ id, name, email, role });
                 actions.resetForm();
                 router.push("/");

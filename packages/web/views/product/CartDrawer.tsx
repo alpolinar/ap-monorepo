@@ -4,15 +4,12 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 
-import CartIcon from "@/components/CartIcon";
-import Button from "@/components/Button";
 import CartItemCard from "./CartItemCard";
 
-import FButton from "@/components/figma/Button";
-
 import { useCart } from "@/store/cart/cart.hook";
-import Typography from "@/components/Typography";
 import { IconButton } from "@mui/material";
+
+import { CartIcon, Typography, Button } from "@ap-monorepo/ui";
 
 export default function CartDrawer() {
     const cart = useCart();

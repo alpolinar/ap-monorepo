@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SQLite DB
+db/sqlite/awesome-e-comm.db
+db/sqlite/migrations/*

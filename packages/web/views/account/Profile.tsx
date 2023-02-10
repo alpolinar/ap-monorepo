@@ -8,21 +8,18 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Card from "@mui/material/Card";
 
-import Typography from "@/components/Typography";
-import Button from "@/components/Button";
-import Loading from "@/components/Loading";
-import { CustomInputComponent } from "@/components/Field";
 import FButton from "@/components/figma/Button";
 
-import { User } from "@/store/authentication/authentication.model";
+import { Typography, Loading, CustomInputComponent } from "@ap-monorepo/ui";
+
 import { useAuthentication } from "@/store/authentication/authentication.hook";
 import axios from "axios";
 
 import * as Yup from "yup";
 import { Formik, FormikHelpers, Form, Field, FormikProps } from "formik";
-import { Product, ProductData, ProductOrder } from "@/db/sqlite/db-types";
-import Card from "@mui/material/Card";
+import { ProductData, ProductOrder } from "@/db/sqlite/db-types";
 
 const EditUserSchema = Yup.object().shape({
     name: Yup.string().min(2).required(),
@@ -44,6 +41,7 @@ export default function Profile() {
     const [open, setOpen] = useState<boolean>(false);
     const [userOrders, setUserOrders] =
         useState<Omit<ProductOrder, "userId">[]>();
+
     const [orders, setOrders] = useState<ProductData[]>();
 
     const initialValues = {
@@ -55,9 +53,7 @@ export default function Profile() {
     useEffect(() => {
         if (!user) return () => {};
         axios
-            .post(`http://localhost:3000/api/orders/user-orders`, {
-                userId: user?.id,
-            })
+            .get(`${process.env.NEXT_PUBLIC_NEST_API}/orders?id=${user?.id}`)
             .then((response) => {
                 setUserOrders(response.data);
             })
