@@ -12,10 +12,17 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../common/decorators/current-user-decorator';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Get('account')
+  async getProfile(@CurrentUser() user) {
+    return user;
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {

@@ -23,7 +23,7 @@ export default function Products({ products }: ProductProps) {
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
     console.log("Server Side Props");
-    const baseUrl = "http://localhost:3001/product";
+    const baseUrl = `${process.env.NEXT_PUBLIC_NEST_API}/product`;
     const endpoint = query.hasOwnProperty("search")
         ? `/search?keyword=${query?.search}`
         : "";

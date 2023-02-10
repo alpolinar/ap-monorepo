@@ -53,9 +53,7 @@ export default function Profile() {
     useEffect(() => {
         if (!user) return () => {};
         axios
-            .post(`http://localhost:3000/api/orders/user-orders`, {
-                userId: user?.id,
-            })
+            .get(`${process.env.NEXT_PUBLIC_NEST_API}/orders?id=${user?.id}`)
             .then((response) => {
                 setUserOrders(response.data);
             })

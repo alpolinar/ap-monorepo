@@ -27,7 +27,7 @@ export default function Orders() {
         if (!userAuth.user) return actions.setSubmitting(false);
         actions.setSubmitting(true);
         axios
-            .post("/api/orders/submit", {
+            .post(`${process.env.NEXT_PUBLIC_NEST_API}/orders/submit`, {
                 userId: userAuth.user?.id,
                 products: JSON.stringify(cart.cartItems),
             })

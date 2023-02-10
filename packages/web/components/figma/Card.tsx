@@ -97,7 +97,7 @@ export default function FCard({
                                 fontWeight: 600,
                             }}
                         >
-                            ${parseInt(`${price}`).toFixed(2)}
+                            ${price}
                         </Typography>
                     </CardContent>
                     <Grid

@@ -18,7 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user: UserDto = await this.userService.findUserByEmail(
       payload.username,
     );
-    const { password, ...result } = user;
+    const { password, refreshToken, ...result } = user;
     return result;
   }
 }

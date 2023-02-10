@@ -32,9 +32,11 @@ export class AuthService {
   async login(user: Omit<UserDto, 'password'>) {
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
+    const { refreshToken, ...userData } = user;
     return {
       access_token: tokens.accessToken,
       refresh_token: tokens.refreshToken,
+      record: { ...userData },
     };
   }
 
@@ -76,7 +78,7 @@ export class AuthService {
         },
         {
           secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
-          expiresIn: '15s',
+          expiresIn: '1d',
         },
       ),
       this.jwtService.signAsync(
