@@ -28,7 +28,8 @@ export default function Header() {
     const router = useRouter();
 
     function handleLogout() {
-        Cookies.remove("token");
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
         userAuth.setUser(null);
         router.push("/sign-in");
     }

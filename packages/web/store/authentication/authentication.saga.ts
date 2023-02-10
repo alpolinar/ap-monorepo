@@ -11,12 +11,21 @@ import axios from "axios";
 
 const updateUser = async ({ id, name, email, role }: User): Promise<User> => {
     return (
-        await axios.post<User>("http://localhost:3000/api/users/update-user", {
-            id,
-            name,
-            email,
-            role,
-        })
+        await axios.patch<User>(
+            `${process.env.NEXT_PUBLIC_NEST_API}/user?id=${id}`,
+            {
+                name,
+                email,
+                role,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        "access_token"
+                    )}`,
+                },
+            }
+        )
     ).data;
 };
 

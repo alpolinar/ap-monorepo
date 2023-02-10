@@ -31,6 +31,13 @@ export class ProductService {
     return convertProductToProductDto(product);
   }
 
+  async search(keyword: string) {
+    const products = await this.prismaService.product.findMany({
+      where: { name: { contains: keyword, mode: 'insensitive' } },
+    });
+    return products.map((product) => convertProductToProductDto(product));
+  }
+
   async update(id: string, updateProductDto: UpdateProductDto) {
     const updateProduct = await this.prismaService.product.update({
       where: { id },

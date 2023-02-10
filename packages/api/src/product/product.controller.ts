@@ -3,13 +3,10 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Patch,
   Post,
   Query,
-  Req,
 } from '@nestjs/common';
-import { Request, query } from 'express';
 import { ProductService } from './product.service';
 import { CreateProductDto, UpdateProductDto } from './dto';
 
@@ -27,6 +24,11 @@ export class ProductController {
     return this.productService.findAll();
   }
 
+  @Get('search')
+  search(@Query('keyword') keyword: string) {
+    return this.productService.search(keyword);
+  }
+
   @Get('find')
   findOne(@Query('id') id: string) {
     return this.productService.findOne(id);
@@ -34,8 +36,6 @@ export class ProductController {
 
   @Patch()
   update(@Query('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    console.log('update');
-    console.log(id, updateProductDto);
     return this.productService.update(id, updateProductDto);
   }
 

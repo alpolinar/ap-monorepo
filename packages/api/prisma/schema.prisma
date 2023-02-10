@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -8,11 +9,54 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  image       String
-  description String
-  price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                String              @id @default(uuid())
+  name              String
+  image             String
+  description       String
+  price             Float
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  Inventory         Inventory[]
+  ProductCategories ProductCategories[]
+}
+
+model Category {
+  id                String              @id @default(uuid())
+  name              String
+  slug              String
+  ProductCategories ProductCategories[]
+}
+
+model ProductCategories {
+  id         Int      @id @default(autoincrement())
+  productId  String
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
+}
+
+model Inventory {
+  id        Int     @id @default(autoincrement())
+  quantity  Int     @default(0)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  password     String
+  email        String   @unique
+  role         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  refreshToken String?
+  Orders       Orders[]
+}
+
+model Orders {
+  id       String @id @default(uuid())
+  userId   String
+  products String
+  user     User   @relation(fields: [userId], references: [id])
 }
