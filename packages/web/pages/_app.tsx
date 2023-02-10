@@ -17,7 +17,6 @@ export default function App({ Component, ...rest }: AppProps) {
         <ThemeProvider theme={theme}>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <FAppBar />
                     <Component {...pageProps} />
                 </PersistGate>
             </Provider>

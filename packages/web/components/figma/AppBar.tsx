@@ -33,7 +33,7 @@ const pages: Pages[] = [
     },
 ];
 
-function ResponsiveAppBar() {
+function FAppBar() {
     const userAuth = useAuthentication();
     const user = userAuth.user;
     const router = useRouter();
@@ -253,4 +253,4 @@ function ResponsiveAppBar() {
         </AppBar>
     );
 }
-export default ResponsiveAppBar;
+export default FAppBar;
