@@ -6,9 +6,12 @@
   "author": "alpolinar <alpolinar@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces":{
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": ["**/@nestjs", "**/@nestjs/**"]
+    },
   "scripts": {
     "web": "yarn --cwd packages/web dev",
     "api": "yarn --cwd packages/api start:dev",

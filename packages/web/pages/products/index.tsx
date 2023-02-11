@@ -8,6 +8,9 @@ import { ProductData } from "@/db/sqlite/db-types";
 
 import axios from "axios";
 
+import { wrapper } from "@/store/store";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
 type ProductProps = {
     products: Array<ProductData>;
 };
@@ -21,8 +24,27 @@ export default function Products({ products }: ProductProps) {
     );
 }
 
-export async function getServerSideProps({ query }: GetServerSidePropsContext) {
-    console.log("Server Side Props");
+export const getServerSideProps = async ({
+    query,
+}: GetServerSidePropsContext) => {
+    const client = new ApolloClient({
+        uri: `${process.env.NEXT_PUBLIC_NEST_API}/graphql`,
+        cache: new InMemoryCache(),
+    });
+
+    const mProd = await client.query({
+        query: gql`
+            query fetchProducts {
+                fetchProducts {
+                    id
+                    name
+                    description
+                    price
+                }
+            }
+        `,
+    });
+    console.log(mProd.data.fetchProducts);
     const baseUrl = `${process.env.NEXT_PUBLIC_NEST_API}/product`;
     const endpoint = query.hasOwnProperty("search")
         ? `/search?keyword=${query?.search}`
@@ -34,4 +56,4 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
             products,
         },
     };
-}
+};

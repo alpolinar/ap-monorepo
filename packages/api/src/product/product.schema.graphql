@@ -1,0 +1,23 @@
+type Product {
+    id: String!
+    name: String!
+    image: String!
+    description: String!
+    price: Float!
+}
+
+input CreateProductInput {
+    name: String!
+    image: String!
+    description: String!
+    price: Float!
+}
+
+type Query {
+    fetchProducts: [Product]
+    fetchProductById(id: String!): Product
+}
+
+type Mutation {
+    createProduct(input: CreateProductInput!): Product!
+}
