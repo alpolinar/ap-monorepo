@@ -26,6 +26,7 @@ export interface Product {
 export interface IQuery {
     fetchProducts(): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
     fetchProductById(id: string): Nullable<Product> | Promise<Nullable<Product>>;
+    fetchProductByKeyword(name: string): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
 }
 
 export interface IMutation {

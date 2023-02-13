@@ -16,6 +16,7 @@ input CreateProductInput {
 type Query {
     fetchProducts: [Product]
     fetchProductById(id: String!): Product
+    fetchProductByKeyword(name: String!): [Product]
 }
 
 type Mutation {

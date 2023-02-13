@@ -1,10 +1,5 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
-import {
-    ApolloClient,
-    ApolloQueryResult,
-    InMemoryCache,
-    gql,
-} from "@apollo/client";
+import { ApolloQueryResult, gql } from "@apollo/client";
 import {
     PRODUCTS_ACTION_TYPES,
     createProduct,
@@ -15,16 +10,12 @@ import {
     fetchProductsRequestType,
 } from "./product.model";
 import { Product } from "@ap-monorepo/api/src/graphql";
-
-const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_NEST_API}/graphql`,
-    cache: new InMemoryCache(),
-});
+import { client } from "../apolloClient";
 
 export function* createProductAsync({ payload }: createProductRequestType) {
     try {
         const result: ApolloQueryResult<{ createProduct: Product }> =
-            yield call(client.mutate, {
+            yield call(client().mutate, {
                 mutation: gql`
                     mutation createProduct($input: CreateProductInput!) {
                         createProduct(input: $input) {
@@ -50,7 +41,7 @@ export function* fetchProductByIdAsync({
 }: fetchProductByIdRequestType) {
     try {
         const result: ApolloQueryResult<{ fetchProductById: Product }> =
-            yield call(client.query, {
+            yield call(client().query, {
                 query: gql`
                     query fetchProductById($id: String!) {
                         fetchProductById(id: $id) {
@@ -75,7 +66,7 @@ export function* fetchProductByIdAsync({
 export function* fetchProductsAsync({ payload }: fetchProductsRequestType) {
     try {
         const result: ApolloQueryResult<{ fetchProducts: Product[] }> =
-            yield call(client.query, {
+            yield call(client().query, {
                 query: gql`
                     query fetchProducts {
                         fetchProducts {

@@ -6,10 +6,9 @@ import { GetServerSidePropsContext } from "next";
 
 import { ProductData } from "@/db/sqlite/db-types";
 
-import axios from "axios";
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 
-import { wrapper } from "@/store/store";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { allProducts, searchProducts } from "@/services/gql";
 
 type ProductProps = {
     products: Array<ProductData>;
@@ -25,32 +24,25 @@ export default function Products({ products }: ProductProps) {
 }
 
 export const getServerSideProps = async ({
+    req,
     query,
 }: GetServerSidePropsContext) => {
     const client = new ApolloClient({
-        uri: `${process.env.NEXT_PUBLIC_NEST_API}/graphql`,
+        ssrMode: true,
+        link: createHttpLink({
+            uri: `${process.env.NEXT_PUBLIC_NEST_API}/graphql`,
+            credentials: "same-origin",
+            headers: {
+                cookie: req.headers.cookie || "",
+            },
+        }),
         cache: new InMemoryCache(),
     });
 
-    const mProd = await client.query({
-        query: gql`
-            query fetchProducts {
-                fetchProducts {
-                    id
-                    name
-                    description
-                    price
-                }
-            }
-        `,
-    });
-    console.log(mProd.data.fetchProducts);
-    const baseUrl = `${process.env.NEXT_PUBLIC_NEST_API}/product`;
-    const endpoint = query.hasOwnProperty("search")
-        ? `/search?keyword=${query?.search}`
-        : "";
-    const response = await axios.get(baseUrl + endpoint);
-    const products = response.data;
+    const products = query.hasOwnProperty("search")
+        ? (await searchProducts(client, query?.search as string)).data
+              .fetchProductByKeyword
+        : (await allProducts(client)).data.fetchProducts;
     return {
         props: {
             products,

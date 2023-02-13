@@ -19,6 +19,14 @@ export class ProductResolver {
     return this.productService.findOne(id);
   }
 
+  @Query()
+  async fetchProductByKeyword(
+    @Args('name')
+    name: string,
+  ) {
+    return this.productService.search(name);
+  }
+
   @Mutation()
   async createProduct(
     @Args('input')
