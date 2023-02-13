@@ -10,12 +10,12 @@ import {
     fetchProductsRequestType,
 } from "./product.model";
 import { Product } from "@ap-monorepo/api/src/graphql";
-import { client } from "../apolloClient";
+import { apolloClient } from "../../services/apolloClient";
 
 export function* createProductAsync({ payload }: createProductRequestType) {
     try {
         const result: ApolloQueryResult<{ createProduct: Product }> =
-            yield call(client().mutate, {
+            yield call(apolloClient({}).mutate, {
                 mutation: gql`
                     mutation createProduct($input: CreateProductInput!) {
                         createProduct(input: $input) {
@@ -41,7 +41,7 @@ export function* fetchProductByIdAsync({
 }: fetchProductByIdRequestType) {
     try {
         const result: ApolloQueryResult<{ fetchProductById: Product }> =
-            yield call(client().query, {
+            yield call(apolloClient({}).query, {
                 query: gql`
                     query fetchProductById($id: String!) {
                         fetchProductById(id: $id) {
@@ -66,7 +66,7 @@ export function* fetchProductByIdAsync({
 export function* fetchProductsAsync({ payload }: fetchProductsRequestType) {
     try {
         const result: ApolloQueryResult<{ fetchProducts: Product[] }> =
-            yield call(client().query, {
+            yield call(apolloClient({}).query, {
                 query: gql`
                     query fetchProducts {
                         fetchProducts {

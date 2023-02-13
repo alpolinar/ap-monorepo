@@ -9,6 +9,7 @@ import { ProductData } from "@/db/sqlite/db-types";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 
 import { allProducts, searchProducts } from "@/services/gql";
+import { apolloClient } from "@/services/apolloClient";
 
 type ProductProps = {
     products: Array<ProductData>;
@@ -27,17 +28,7 @@ export const getServerSideProps = async ({
     req,
     query,
 }: GetServerSidePropsContext) => {
-    const client = new ApolloClient({
-        ssrMode: true,
-        link: createHttpLink({
-            uri: `${process.env.NEXT_PUBLIC_NEST_API}/graphql`,
-            credentials: "same-origin",
-            headers: {
-                cookie: req.headers.cookie || "",
-            },
-        }),
-        cache: new InMemoryCache(),
-    });
+    const client = apolloClient({ req, ssrMode: true });
 
     const products = query.hasOwnProperty("search")
         ? (await searchProducts(client, query?.search as string)).data
