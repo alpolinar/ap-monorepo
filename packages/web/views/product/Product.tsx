@@ -4,14 +4,14 @@ import Box from "@mui/material/Box";
 
 import AppContainer from "@/views/common/AppContainer";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { Typography, Button } from "@ap-monorepo/ui";
 
 type ProductPageProps = {
-    product: ProductData;
+    product: Product;
     handleAddToCart?: () => void;
 };
 

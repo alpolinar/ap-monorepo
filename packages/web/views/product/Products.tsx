@@ -11,16 +11,11 @@ import FCard from "@/components/figma/Card";
 
 import { Product } from "@ap-monorepo/api/src/graphql";
 
-import { useCart } from "@/store/cart/cart.hook";
-
 type ProductPageProps = {
     products: Product[];
 };
 
 export default function ProductsPage({ products }: ProductPageProps) {
-    const cart = useCart();
-    const cartItems = cart.cartItems;
-
     return (
         <AppContainer>
             {products.length > 0 ? (
@@ -33,13 +28,7 @@ export default function ProductsPage({ products }: ProductPageProps) {
                     >
                         {products?.map((product) => (
                             <Grid item key={product.id} xs={12} sm={6} md={4}>
-                                <FCard
-                                    id={product.id}
-                                    image={product.image}
-                                    name={product.name}
-                                    price={product.price}
-                                    product={product}
-                                />
+                                <FCard product={product} />
                             </Grid>
                         ))}
                     </Grid>

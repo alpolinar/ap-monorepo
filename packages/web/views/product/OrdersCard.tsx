@@ -11,10 +11,10 @@ import { useCart } from "@/store/cart/cart.hook";
 
 import { TextField } from "@ap-monorepo/ui";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 export default function OrdersCard(
-    props: Omit<ProductData, "description"> & { quantity: number }
+    props: Omit<Product, "description" | "inventory"> & { quantity: number }
 ) {
     const cart = useCart();
     const cartItems = cart.cartItems;
