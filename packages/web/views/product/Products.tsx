@@ -9,18 +9,13 @@ import { Typography } from "@ap-monorepo/ui";
 
 import FCard from "@/components/figma/Card";
 
-import { ProductData } from "@/db/sqlite/db-types";
-
-import { useCart } from "@/store/cart/cart.hook";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 type ProductPageProps = {
-    products: Array<ProductData>;
+    products: Product[];
 };
 
 export default function ProductsPage({ products }: ProductPageProps) {
-    const cart = useCart();
-    const cartItems = cart.cartItems;
-
     return (
         <AppContainer>
             {products.length > 0 ? (
@@ -33,13 +28,7 @@ export default function ProductsPage({ products }: ProductPageProps) {
                     >
                         {products?.map((product) => (
                             <Grid item key={product.id} xs={12} sm={6} md={4}>
-                                <FCard
-                                    id={product.id}
-                                    image={product.image}
-                                    name={product.name}
-                                    price={product.price}
-                                    product={product}
-                                />
+                                <FCard product={product} />
                             </Grid>
                         ))}
                     </Grid>

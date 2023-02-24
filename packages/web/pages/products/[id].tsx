@@ -4,17 +4,17 @@ import { GetServerSidePropsContext } from "next";
 import Footer from "@/views/common/Footer";
 import ProductPage from "@/views/product/Product";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 import { useCart } from "@/store/cart/cart.hook";
 
 import axios from "axios";
 
 type ProductProps = {
-    product: ProductData;
+    product: Product;
 };
 
-export default function Product({ product }: ProductProps) {
+export default function ProductDetails({ product }: ProductProps) {
     const cart = useCart();
     const cartItems = cart.cartItems;
 

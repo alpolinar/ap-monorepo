@@ -36,6 +36,8 @@ export default function PaymentForm(props: FormikProps<FormValues>) {
                         name="name"
                         type="text"
                         placeholder="Name"
+                        fullWidth
+                        sx={{ mb: 2 }}
                     />
 
                     <Field
@@ -43,6 +45,8 @@ export default function PaymentForm(props: FormikProps<FormValues>) {
                         name="cardNumber"
                         type="text"
                         placeholder="Card Number"
+                        fullWidth
+                        sx={{ mb: 2 }}
                     />
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -51,6 +55,7 @@ export default function PaymentForm(props: FormikProps<FormValues>) {
                                 name="cvc"
                                 type="text"
                                 placeholder="CVC"
+                                sx={{ mb: 2 }}
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -59,6 +64,7 @@ export default function PaymentForm(props: FormikProps<FormValues>) {
                                 name="expiryDate"
                                 type="text"
                                 placeholder="mm/yy"
+                                sx={{ mb: 2 }}
                             />
                         </Grid>
                     </Grid>

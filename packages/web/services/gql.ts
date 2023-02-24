@@ -42,3 +42,19 @@ export const searchProducts = async (
         },
     });
 };
+
+export const allOrders = async (
+    client: ApolloClient<NormalizedCacheObject>
+) => {
+    return await client.query({
+        query: gql`
+            query fetchOrders {
+                fetchOrders {
+                    id
+                    userId
+                    products
+                }
+            }
+        `,
+    });
+};

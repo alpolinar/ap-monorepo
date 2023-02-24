@@ -5,8 +5,6 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 
-import { SimpleDialog } from "@ap-monorepo/ui";
-
 import AdminLayout from "@/views/admin/AdminLayout";
 import { ProductAddDialog } from "@/views/admin/products/ProductAddDialog";
 import ProductTableHeader from "@/views/admin/products/ProductTableHeader";
@@ -15,7 +13,6 @@ import ProductTableResults from "@/views/admin/products/ProductTableResults";
 
 import ProductToolbar from "@/views/admin/products/ProductToolbar";
 
-import { FormikHelpers } from "formik";
 import { useProducts } from "@/store/product/product.hooks";
 
 export default function Products() {

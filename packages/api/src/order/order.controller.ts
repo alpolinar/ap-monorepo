@@ -20,7 +20,17 @@ export class OrdersController {
   }
 
   @Get()
-  findAll(@Query('id') id: string) {
-    return this.orderService.findAll(id);
+  findAll() {
+    return this.orderService.findAll();
+  }
+
+  @Get()
+  findAllById(@Query('id') id: string) {
+    return this.orderService.findAllById(id);
+  }
+
+  @Get()
+  findAllByUserId(@Query('id') id: string) {
+    return this.orderService.findAllByUserId(id);
   }
 }
