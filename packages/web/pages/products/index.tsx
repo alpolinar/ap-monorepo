@@ -4,12 +4,13 @@ import ProductsPage from "@/views/product/Products";
 import React from "react";
 import { GetServerSidePropsContext } from "next";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { allProducts, searchProducts } from "@/services/gql";
+import { apolloClient } from "@/services/apolloClient";
 
-import axios from "axios";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
-type ProductProps = {
-    products: Array<ProductData>;
+export type ProductProps = {
+    products: Array<Product>;
 };
 
 export default function Products({ products }: ProductProps) {
@@ -21,17 +22,19 @@ export default function Products({ products }: ProductProps) {
     );
 }
 
-export async function getServerSideProps({ query }: GetServerSidePropsContext) {
-    console.log("Server Side Props");
-    const baseUrl = `${process.env.NEXT_PUBLIC_NEST_API}/product`;
-    const endpoint = query.hasOwnProperty("search")
-        ? `/search?keyword=${query?.search}`
-        : "";
-    const response = await axios.get(baseUrl + endpoint);
-    const products = response.data;
+export const getServerSideProps = async ({
+    req,
+    query,
+}: GetServerSidePropsContext) => {
+    const client = apolloClient({ req, ssrMode: true });
+
+    const products = query.hasOwnProperty("search")
+        ? (await searchProducts(client, query?.search as string)).data
+              .fetchProductByKeyword
+        : (await allProducts(client)).data.fetchProducts;
     return {
         props: {
             products,
         },
     };
-}
+};

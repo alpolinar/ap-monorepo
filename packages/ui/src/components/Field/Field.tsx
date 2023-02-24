@@ -1,15 +1,20 @@
 import React from "react";
 import { TextField } from "../TextField";
+import { Textarea } from "../Textarea";
 
-type FieldType = {
+type FieldProps = {
     field: {
         name: string;
         value: string;
-        onChange: () => {};
-        onBlur: () => {};
+        onChange: () => void;
+        onBlur: () => void;
     };
 };
 
-export const CustomInputComponent = ({ field, ...props }: FieldType) => (
-    <TextField {...field} {...props} fullWidth sx={{ mb: 2 }} />
+export const CustomTextareaComponent = ({ field, ...props }: FieldProps) => (
+    <Textarea {...field} {...props} />
 );
+
+export const CustomInputComponent = ({ field, ...props }: FieldProps) => {
+    return <TextField {...field} {...props} />;
+};

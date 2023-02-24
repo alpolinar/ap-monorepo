@@ -1,18 +1,17 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import AppForm from "@/views/common/AppForm";
 import Footer from "@/views/common/Footer";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 
 import {
-    Typography,
     Button,
-    Loading,
     CustomInputComponent,
+    Loading,
+    Typography,
 } from "@ap-monorepo/ui";
 
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { Formik, FormikHelpers, Form, Field } from "formik";
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email"),
@@ -46,7 +45,7 @@ export default function SignIn({ handleSubmit }: SignIn) {
                 </Typography>
                 <Typography variant="body2" align="center">
                     {"Not a member yet? "}
-                    <Link href="/sign-up/" align="center" underline="always">
+                    <Link href="/register/" align="center" underline="always">
                         Sign Up here
                     </Link>
                 </Typography>

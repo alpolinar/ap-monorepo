@@ -10,3 +10,5 @@ export * from "./Markdown";
 export * from "./Paper";
 export * from "./Snackbar";
 export * from "./Toolbar";
+export * from "./SearchInput";
+export * from "./Dialog";

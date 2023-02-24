@@ -6,6 +6,7 @@ import Hero from "@/views/homepage/Hero";
 import Footer from "@/views/common/Footer";
 import ProductCTA from "@/views/homepage/ProductCTA";
 import ProductSmokingHero from "@/views/homepage/ProductSmokingHero";
+import FAppBar from "@/components/figma/AppBar";
 
 import { FormikHelpers } from "formik";
 
@@ -42,6 +43,7 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <FAppBar />
             <Hero handleSubmit={handleSubmit} />
             <ProductCTA />
             <ProductSmokingHero />
