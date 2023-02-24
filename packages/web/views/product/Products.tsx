@@ -9,12 +9,12 @@ import { Typography } from "@ap-monorepo/ui";
 
 import FCard from "@/components/figma/Card";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 import { useCart } from "@/store/cart/cart.hook";
 
 type ProductPageProps = {
-    products: Array<ProductData>;
+    products: Product[];
 };
 
 export default function ProductsPage({ products }: ProductPageProps) {

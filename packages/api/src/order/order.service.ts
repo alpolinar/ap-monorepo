@@ -19,7 +19,20 @@ export class OrdersService {
     return convertOrdersToOrdersDto(order);
   }
 
-  async findAll(id: string) {
+  async findAll() {
+    const orders = await this.prismaService.orders.findMany();
+    return orders.map((order) => convertOrdersToOrdersDto(order));
+  }
+
+  async findAllById(id: string) {
+    const order = await this.prismaService.orders.findUniqueOrThrow({
+      where: { id },
+    });
+    console.log('findAllById', order);
+    return convertOrdersToOrdersDto(order);
+  }
+
+  async findAllByUserId(id: string) {
     const orders = await this.prismaService.orders.findMany({
       where: { userId: id },
     });

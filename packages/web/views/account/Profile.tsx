@@ -162,7 +162,10 @@ export default function Profile() {
                                                 >
                                                     <CardMedia
                                                         component="img"
-                                                        sx={{ width: 200 }}
+                                                        sx={{
+                                                            width: 200,
+                                                            maxHeight: 120,
+                                                        }}
                                                         image={item.image}
                                                         alt={item.name}
                                                     />
