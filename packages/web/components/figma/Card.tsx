@@ -19,9 +19,10 @@ import { useCart } from "@/store/cart/cart.hook";
 
 type FCardProps = {
     product: Product;
+    sx: {};
 };
 
-export default function FCard({ product }: FCardProps) {
+export default function FCard({ product, sx }: FCardProps) {
     const cart = useCart();
     const cartItems = cart.cartItems;
 
@@ -36,6 +37,7 @@ export default function FCard({ product }: FCardProps) {
                 borderRadius: 4,
                 minWidth: 275,
                 maxWidth: 350,
+                ...sx,
             }}
         >
             <Grid container direction="column">
@@ -52,20 +54,13 @@ export default function FCard({ product }: FCardProps) {
                                     position: "absolute",
                                     top: 16,
                                     right: 16,
-                                    p: 0,
-                                    borderRadius: 50,
-                                    minWidth: 0,
+                                    p: 1.75,
                                     boxShadow: 1,
+                                    backgroundColor: "white",
                                 }}
                                 onClick={handleAddToCart}
                             >
-                                <AddShoppingCartIcon
-                                    sx={{
-                                        background: "white",
-                                        p: 1.75,
-                                        borderRadius: "50%",
-                                    }}
-                                />
+                                <AddShoppingCartIcon />
                             </IconButton>
                         </Box>
                     ) : (

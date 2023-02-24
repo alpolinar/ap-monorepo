@@ -28,7 +28,6 @@ export class OrdersService {
     const order = await this.prismaService.orders.findUniqueOrThrow({
       where: { id },
     });
-    console.log('findAllById', order);
     return convertOrdersToOrdersDto(order);
   }
 

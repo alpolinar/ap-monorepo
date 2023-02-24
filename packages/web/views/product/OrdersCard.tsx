@@ -42,7 +42,7 @@ export default function OrdersCard(
         <Card sx={{ display: "flex", mb: 1 }}>
             <CardMedia
                 component="img"
-                sx={{ width: 200 }}
+                sx={{ width: 200, maxHeight: 140 }}
                 image={props.image}
                 alt={props.name}
             />

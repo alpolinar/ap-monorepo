@@ -137,90 +137,78 @@ export default function Profile() {
                 </Grid>
             </Grid>
             {userOrders &&
-                userOrders?.map((order, oIdx) => {
-                    return (
-                        <Box key={oIdx}>
-                            <Typography>Order ID: {order.id}</Typography>
-                            <Grid container direction="row" spacing={2}>
-                                {JSON.parse(order.products)?.map(
-                                    (item: Product) => {
-                                        return (
-                                            <Grid
-                                                item
-                                                key={item.id}
-                                                xs={12}
-                                                sm={6}
+                userOrders?.map((order, oIdx) => (
+                    <Box key={oIdx}>
+                        <Typography>Order ID: {order.id}</Typography>
+                        <Grid container direction="row" spacing={2}>
+                            {JSON.parse(order.products)?.map(
+                                (item: Product) => (
+                                    <Grid item key={item.id} xs={12} sm={6}>
+                                        <Card
+                                            sx={{
+                                                display: "flex",
+                                                mb: 1,
+                                            }}
+                                        >
+                                            <CardMedia
+                                                component="img"
+                                                sx={{
+                                                    width: 200,
+                                                    maxHeight: 140,
+                                                }}
+                                                image={item.image}
+                                                alt={item.name}
+                                            />
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    width: "100%",
+                                                }}
                                             >
-                                                <Card
+                                                <CardContent
                                                     sx={{
-                                                        display: "flex",
-                                                        mb: 1,
+                                                        flex: "1 0 auto",
                                                     }}
                                                 >
-                                                    <CardMedia
-                                                        component="img"
-                                                        sx={{
-                                                            width: 200,
-                                                            maxHeight: 120,
-                                                        }}
-                                                        image={item.image}
-                                                        alt={item.name}
-                                                    />
-                                                    <Box
-                                                        sx={{
-                                                            display: "flex",
-                                                            flexDirection:
-                                                                "column",
-                                                            width: "100%",
-                                                        }}
+                                                    <Typography
+                                                        component="p"
+                                                        variant="h6"
+                                                        sx={{ mb: 1 }}
                                                     >
-                                                        <CardContent
-                                                            sx={{
-                                                                flex: "1 0 auto",
-                                                            }}
+                                                        {item.name}
+                                                    </Typography>
+                                                    <Grid
+                                                        container
+                                                        justifyItems="center"
+                                                        sx={{ mb: 1 }}
+                                                    >
+                                                        <Grid
+                                                            item
+                                                            xs={12}
+                                                            sm={6}
                                                         >
                                                             <Typography
-                                                                component="p"
-                                                                variant="h6"
-                                                                sx={{ mb: 1 }}
+                                                                variant="body1"
+                                                                color="text.secondary"
+                                                                component="div"
                                                             >
-                                                                {item.name}
+                                                                $
+                                                                {parseFloat(
+                                                                    `${item.price}`
+                                                                ).toFixed(2)}
                                                             </Typography>
-                                                            <Grid
-                                                                container
-                                                                justifyItems="center"
-                                                                sx={{ mb: 1 }}
-                                                            >
-                                                                <Grid
-                                                                    item
-                                                                    xs={12}
-                                                                    sm={6}
-                                                                >
-                                                                    <Typography
-                                                                        variant="body1"
-                                                                        color="text.secondary"
-                                                                        component="div"
-                                                                    >
-                                                                        $
-                                                                        {parseFloat(
-                                                                            `${item.price}`
-                                                                        ).toFixed(
-                                                                            2
-                                                                        )}
-                                                                    </Typography>
-                                                                </Grid>
-                                                            </Grid>
-                                                        </CardContent>
-                                                    </Box>
-                                                </Card>
-                                            </Grid>
-                                        );
-                                    }
-                                )}
-                            </Grid>
-                        </Box>
-                    );
-                })}
+                                                        </Grid>
+                                                    </Grid>
+                                                </CardContent>
+                                            </Box>
+                                        </Card>
+                                    </Grid>
+                                )
+                            )}
+                        </Grid>
+                    </Box>
+                ))}
             <Dialog open={open} onClose={handleCloseEditForm} fullWidth>
                 <DialogTitle>Edit User</DialogTitle>
                 <DialogContent>

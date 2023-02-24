@@ -52,7 +52,6 @@ export const getServerSideProps = async ({
 }: GetServerSidePropsContext) => {
     const client = apolloClient({ req, ssrMode: true });
     const orders = (await allOrders(client)).data.fetchOrders;
-    console.log(orders);
     return {
         props: {
             orders,

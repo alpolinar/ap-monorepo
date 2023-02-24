@@ -2,6 +2,7 @@ import React from "react";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 import AppContainer from "@/views/common/AppContainer";
 
@@ -19,20 +20,28 @@ export default function ProductsPage({ products }: ProductPageProps) {
     return (
         <AppContainer>
             {products.length > 0 ? (
-                <Container sx={{ display: "flex" }}>
-                    <Grid
-                        container
-                        rowGap={4}
-                        columnSpacing={4}
-                        direction="row"
-                    >
-                        {products?.map((product) => (
-                            <Grid item key={product.id} xs={12} sm={6} md={4}>
-                                <FCard product={product} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
+                <Grid
+                    container
+                    gap={2}
+                    sx={{
+                        justifyContent: {
+                            xs: "center",
+                            sm: "space-between",
+                        },
+                    }}
+                >
+                    {products?.map((product) => (
+                        <Grid
+                            item
+                            key={product.id}
+                            xs={12}
+                            sm={5}
+                            justifyContent="center"
+                        >
+                            <FCard product={product} sx={{ m: "0 auto" }} />
+                        </Grid>
+                    ))}
+                </Grid>
             ) : (
                 <Typography variant="h4">No products found.</Typography>
             )}

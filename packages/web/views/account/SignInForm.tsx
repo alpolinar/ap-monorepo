@@ -77,6 +77,8 @@ export default function SignIn({ handleSubmit }: SignIn) {
                                             name="email"
                                             type="email"
                                             placeholder="Email"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
 
                                         <Field
@@ -84,6 +86,8 @@ export default function SignIn({ handleSubmit }: SignIn) {
                                             name="password"
                                             type="password"
                                             placeholder="Password"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
                                         <Button
                                             sx={{ mb: 2 }}

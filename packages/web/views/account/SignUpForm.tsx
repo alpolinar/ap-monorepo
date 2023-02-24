@@ -107,6 +107,8 @@ export default function SignUp({ handleSubmit }: SignUp) {
                                                     type="text"
                                                     name="firstName"
                                                     placeholder="First Name"
+                                                    fullWidth
+                                                    sx={{ mb: 2 }}
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={6}>
@@ -123,6 +125,8 @@ export default function SignUp({ handleSubmit }: SignUp) {
                                                     type="text"
                                                     name="lastName"
                                                     placeholder="Last Name"
+                                                    fullWidth
+                                                    sx={{ mb: 2 }}
                                                 />
                                             </Grid>
                                         </Grid>
@@ -137,6 +141,8 @@ export default function SignUp({ handleSubmit }: SignUp) {
                                             name="email"
                                             type="email"
                                             placeholder="Email"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
                                         {props.errors.password &&
                                         props.touched.password ? (
@@ -149,6 +155,8 @@ export default function SignUp({ handleSubmit }: SignUp) {
                                             name="password"
                                             type="password"
                                             placeholder="Password"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
                                         {props.errors.confirmPassword &&
                                         props.touched.confirmPassword ? (
@@ -161,6 +169,8 @@ export default function SignUp({ handleSubmit }: SignUp) {
                                             name="confirmPassword"
                                             type="password"
                                             placeholder="Confirm Password"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
                                         <Button
                                             sx={{ mb: 2 }}

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import SignInForm from "@/views/account/SignInForm";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import Cookies from "js-cookie";
 
@@ -62,7 +62,9 @@ export default function Login() {
                 actions.setSubmitting(false);
             })
             .catch((err) => {
-                actions.setStatus(err.response.data.message);
+                if (err instanceof AxiosError) {
+                    actions.setStatus(err.response?.data.message);
+                }
                 actions.setSubmitting(false);
             });
     }
