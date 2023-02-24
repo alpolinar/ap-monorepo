@@ -19,7 +19,7 @@ import axios from "axios";
 
 import * as Yup from "yup";
 import { Formik, FormikHelpers, Form, Field, FormikProps } from "formik";
-import { ProductData, ProductOrder } from "@/db/sqlite/db-types";
+import { Product, Order } from "@ap-monorepo/api/src/graphql";
 
 const EditUserSchema = Yup.object().shape({
     name: Yup.string().min(2).required(),
@@ -39,10 +39,7 @@ export default function Profile() {
     const user = userAuth.user;
 
     const [open, setOpen] = useState<boolean>(false);
-    const [userOrders, setUserOrders] =
-        useState<Omit<ProductOrder, "userId">[]>();
-
-    const [orders, setOrders] = useState<ProductData[]>();
+    const [userOrders, setUserOrders] = useState<Omit<Order, "userId">[]>();
 
     const initialValues = {
         id: user?.id || "",
@@ -146,7 +143,7 @@ export default function Profile() {
                             <Typography>Order ID: {order.id}</Typography>
                             <Grid container direction="row" spacing={2}>
                                 {JSON.parse(order.products)?.map(
-                                    (item: ProductData) => {
+                                    (item: Product) => {
                                         return (
                                             <Grid
                                                 item
@@ -264,6 +261,7 @@ export default function Profile() {
                                                     type="text"
                                                     name="name"
                                                     placeholder="Name"
+                                                    fullWidth
                                                 />
                                             </Grid>
                                             <Grid item>
@@ -280,6 +278,7 @@ export default function Profile() {
                                                     type="email"
                                                     name="email"
                                                     placeholder="Email"
+                                                    fullWidth
                                                 />
                                             </Grid>
                                             <Grid item>

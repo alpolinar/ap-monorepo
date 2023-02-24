@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-import Card, { CardProps } from "@mui/material/Card";
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -11,26 +11,24 @@ import IconButton from "@mui/material/IconButton";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-import { ProductData } from "@/db/sqlite/db-types";
+import { Product } from "@ap-monorepo/api/src/graphql";
 
 import FButton from "./Button";
 
 import { useCart } from "@/store/cart/cart.hook";
 
-export default function FCard({
-    id,
-    image,
-    name,
-    price,
-    product,
-    props,
-}: Partial<ProductData> & { product: ProductData; props?: CardProps }) {
+type FCardProps = {
+    product: Product;
+};
+
+export default function FCard({ product }: FCardProps) {
     const cart = useCart();
     const cartItems = cart.cartItems;
 
     function handleAddToCart() {
         cart.addItemToCart(cartItems, product);
     }
+
     return (
         <Card
             sx={{
@@ -42,12 +40,12 @@ export default function FCard({
         >
             <Grid container direction="column">
                 <Grid item xs={8}>
-                    {image ? (
+                    {product.image ? (
                         <Box sx={{ position: "relative" }}>
                             <CardMedia
                                 sx={{ height: 200, borderRadius: 4 }}
-                                image={image}
-                                title={name}
+                                image={product.image}
+                                title={product.name}
                             />
                             <IconButton
                                 sx={{
@@ -88,7 +86,7 @@ export default function FCard({
                                 lineHeight: 3,
                             }}
                         >
-                            {name}
+                            {product.name}
                         </Typography>
                         <Typography
                             sx={{
@@ -97,7 +95,7 @@ export default function FCard({
                                 fontWeight: 600,
                             }}
                         >
-                            ${price}
+                            ${product.price}
                         </Typography>
                     </CardContent>
                     <Grid
@@ -112,7 +110,7 @@ export default function FCard({
                                 variant="contained"
                                 borderRadius={50}
                                 fullWidth
-                                href={`/products/${id}`}
+                                href={`/products/${product.id}`}
                             >
                                 View
                             </FButton>

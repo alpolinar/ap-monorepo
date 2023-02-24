@@ -16,6 +16,7 @@ import { PaymentProps } from "./PaymentForm";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
+import AppContainer from "../common/AppContainer";
 
 export default function OrdersPage({ handleSubmitOrder }: PaymentProps) {
     const cart = useCart();
@@ -32,7 +33,7 @@ export default function OrdersPage({ handleSubmitOrder }: PaymentProps) {
     };
 
     return (
-        <ProductContainer>
+        <AppContainer>
             <Formik
                 initialValues={initialFormValues}
                 onSubmit={handleSubmitOrder}
@@ -91,6 +92,6 @@ export default function OrdersPage({ handleSubmitOrder }: PaymentProps) {
                     </>
                 )}
             </Formik>
-        </ProductContainer>
+        </AppContainer>
     );
 }
