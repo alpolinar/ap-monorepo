@@ -4,6 +4,11 @@ type Product {
     image: String!
     description: String!
     price: Float!
+    inventory: Int!
+}
+
+type ProductDelete {
+    status: String!
 }
 
 input CreateProductInput {
@@ -11,6 +16,7 @@ input CreateProductInput {
     image: String!
     description: String!
     price: Float!
+    inventory: Float!
 }
 
 type Query {
@@ -21,4 +27,6 @@ type Query {
 
 type Mutation {
     createProduct(input: CreateProductInput!): Product!
+    deleteProduct(input: String!): ProductDelete!
+    updateProduct(id: String!, input: CreateProductInput!): Product!
 }

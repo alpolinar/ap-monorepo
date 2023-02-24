@@ -34,4 +34,17 @@ export class ProductResolver {
   ) {
     return this.productService.create(input);
   }
+
+  @Mutation()
+  async deleteProduct(@Args('input') id: string) {
+    return this.productService.remove(id);
+  }
+
+  @Mutation()
+  async updateProduct(
+    @Args('id') id: string,
+    @Args('input') input: CreateProductInput,
+  ) {
+    return this.productService.update(id, input);
+  }
 }

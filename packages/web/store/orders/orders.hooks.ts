@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { Orders, actions, ordersReducer } from "./orders.model";
+import { Orders, actions } from "./orders.model";
 import { RootState } from "../store";
 
 const setOrders = (orders: Orders[], products: Orders[]): Orders[] => {

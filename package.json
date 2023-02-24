@@ -13,7 +13,7 @@
     "nohoist": ["**/@nestjs", "**/@nestjs/**"]
     },
   "scripts": {
-    "web": "yarn --cwd packages/web dev",
+    "web": "yarn --cwd packages/web start:dev",
     "api": "yarn --cwd packages/api start:dev",
     "dev": "npm-run-all --parallel web api"
   },

@@ -1,4 +1,5 @@
 import { ApolloClient, NormalizedCacheObject, gql } from "@apollo/client";
+import { CreateProductInput } from "@/../api/src/graphql";
 
 export const allProducts = async (
     client: ApolloClient<NormalizedCacheObject>
@@ -12,6 +13,7 @@ export const allProducts = async (
                     image
                     description
                     price
+                    inventory
                 }
             }
         `,
@@ -31,6 +33,7 @@ export const searchProducts = async (
                     image
                     description
                     price
+                    inventory
                 }
             }
         `,

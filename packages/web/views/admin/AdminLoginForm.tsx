@@ -1,7 +1,8 @@
-import AppForm from "@/views/common/AppForm";
-import Footer from "@/views/common/Footer";
+import React from "react";
+
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 import {
     Button,
@@ -10,49 +11,35 @@ import {
     Typography,
 } from "@ap-monorepo/ui";
 
-import { Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
+import { Formik, FormikHelpers, Form, Field, FormikValues } from "formik";
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email"),
 });
 
-interface FormValues {
+export interface FormValues {
     email: string;
     password: string;
 }
 
-type SignIn = {
-    handleSubmit: (
-        values: FormValues,
-        actions: FormikHelpers<FormValues>
-    ) => void;
-};
-
-export default function SignIn({ handleSubmit }: SignIn) {
+export default function AdminLoginForm({ onSubmit }: FormikValues) {
     const initialFormValues: FormValues = { email: "", password: "" };
-
     return (
-        <>
-            <AppForm>
+        <Card sx={{ maxWidth: 500 }}>
+            <CardContent>
                 <Typography
                     variant="h3"
                     gutterBottom
                     marked="center"
                     align="center"
                 >
-                    Sign In
-                </Typography>
-                <Typography variant="body2" align="center">
-                    {"Not a member yet? "}
-                    <Link href="/register/" align="center" underline="always">
-                        Sign Up here
-                    </Link>
+                    Awesome E-comm
                 </Typography>
                 <Box sx={{ mt: 4 }}>
                     <Formik
                         initialValues={initialFormValues}
-                        onSubmit={handleSubmit}
+                        onSubmit={onSubmit}
                         validationSchema={LoginSchema}
                     >
                         {(props) => (
@@ -86,8 +73,8 @@ export default function SignIn({ handleSubmit }: SignIn) {
                                             placeholder="Password"
                                         />
                                         <Button
-                                            sx={{ mb: 2 }}
-                                            color="secondary"
+                                            sx={{ mb: props.status ? 2 : 0 }}
+                                            color="primary"
                                             variant="contained"
                                             type="submit"
                                             fullWidth
@@ -109,13 +96,7 @@ export default function SignIn({ handleSubmit }: SignIn) {
                         )}
                     </Formik>
                 </Box>
-                <Typography align="center">
-                    <Link underline="always" href="/forgot-password">
-                        Forgot password?
-                    </Link>
-                </Typography>
-            </AppForm>
-            <Footer />
-        </>
+            </CardContent>
+        </Card>
     );
 }

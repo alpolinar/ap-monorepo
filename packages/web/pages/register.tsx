@@ -5,7 +5,7 @@ import axios from "axios";
 import { FormikHelpers } from "formik";
 import { FormValues } from "@/views/account/SignUpForm";
 import { useRouter } from "next/router";
-import { UserRole } from "@/db/sqlite/db-types";
+import { USER_ROLES } from "@ap-monorepo/api/src/utils/constants";
 
 interface User {
     password: string;
@@ -26,7 +26,7 @@ export default function Register() {
             email: values.email,
             password: values.password,
             name: `${values.firstName} ${values.lastName}`,
-            role: UserRole.CUSTOMER,
+            role: USER_ROLES.CUSTOMER,
         };
 
         axios
