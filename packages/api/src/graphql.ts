@@ -16,6 +16,21 @@ export interface CreateProductInput {
     inventory: number;
 }
 
+export interface Order {
+    id: string;
+    userId: string;
+    products: string;
+}
+
+export interface IQuery {
+    fetchOrders(): Nullable<Nullable<Order>[]> | Promise<Nullable<Nullable<Order>[]>>;
+    fetchOrderById(id: string): Order | Promise<Order>;
+    fetchOrdersByUserId(id: string): Nullable<Nullable<Order>[]> | Promise<Nullable<Nullable<Order>[]>>;
+    fetchProducts(): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
+    fetchProductById(id: string): Nullable<Product> | Promise<Nullable<Product>>;
+    fetchProductByKeyword(name: string): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
+}
+
 export interface Product {
     id: string;
     name: string;
@@ -27,12 +42,6 @@ export interface Product {
 
 export interface ProductDelete {
     status: string;
-}
-
-export interface IQuery {
-    fetchProducts(): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
-    fetchProductById(id: string): Nullable<Product> | Promise<Nullable<Product>>;
-    fetchProductByKeyword(name: string): Nullable<Nullable<Product>[]> | Promise<Nullable<Nullable<Product>[]>>;
 }
 
 export interface IMutation {

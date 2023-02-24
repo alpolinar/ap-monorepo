@@ -1,0 +1,11 @@
+type Order {
+    id: String!
+    userId: String!
+    products: String!
+}
+
+type Query {
+    fetchOrders: [Order]
+    fetchOrderById(id: String!): Order!
+    fetchOrdersByUserId(id: String!): [Order]
+}
