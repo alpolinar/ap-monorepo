@@ -64,6 +64,8 @@ export default function AdminLoginForm({ onSubmit }: FormikValues) {
                                             name="email"
                                             type="email"
                                             placeholder="Email"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
 
                                         <Field
@@ -71,6 +73,8 @@ export default function AdminLoginForm({ onSubmit }: FormikValues) {
                                             name="password"
                                             type="password"
                                             placeholder="Password"
+                                            fullWidth
+                                            sx={{ mb: 2 }}
                                         />
                                         <Button
                                             sx={{ mb: props.status ? 2 : 0 }}
