@@ -13,6 +13,7 @@ export interface CreateProductInput {
     image: string;
     description: string;
     price: number;
+    inventory: number;
 }
 
 export interface Product {
@@ -21,6 +22,11 @@ export interface Product {
     image: string;
     description: string;
     price: number;
+    inventory: number;
+}
+
+export interface ProductDelete {
+    status: string;
 }
 
 export interface IQuery {
@@ -31,6 +37,8 @@ export interface IQuery {
 
 export interface IMutation {
     createProduct(input: CreateProductInput): Product | Promise<Product>;
+    deleteProduct(input: string): ProductDelete | Promise<ProductDelete>;
+    updateProduct(id: string, input: CreateProductInput): Product | Promise<Product>;
 }
 
 type Nullable<T> = T | null;

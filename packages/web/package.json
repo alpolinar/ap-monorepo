@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:dev": "next dev",
     "lint": "next lint"
   },
   "dependencies": {
     "@ap-monorepo/ui": "^0.1.0",
+    "@ap-monorepo/api": "^0.0.1",
     "@apollo/client": "^3.7.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

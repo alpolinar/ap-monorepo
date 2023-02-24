@@ -20,20 +20,42 @@ export class ProductService {
   }
 
   async findAll() {
-    const products = await this.prismaService.product.findMany();
+    const products = await this.prismaService.product.findMany({
+      include: {
+        productCategories: true,
+      },
+    });
     return products.map((product) => convertProductToProductDto(product));
   }
 
   async findOne(id: string) {
     const product = await this.prismaService.product.findUniqueOrThrow({
       where: { id },
+      include: {
+        productCategories: true,
+      },
     });
     return convertProductToProductDto(product);
   }
 
   async search(keyword: string) {
     const products = await this.prismaService.product.findMany({
-      where: { name: { contains: keyword, mode: 'insensitive' } },
+      where: {
+        OR: [
+          {
+            name: { contains: keyword, mode: 'insensitive' },
+          },
+          {
+            productCategories: {
+              some: {
+                category: {
+                  name: { contains: keyword, mode: 'insensitive' },
+                },
+              },
+            },
+          },
+        ],
+      },
     });
     return products.map((product) => convertProductToProductDto(product));
   }

@@ -4,15 +4,13 @@ import ProductsPage from "@/views/product/Products";
 import React from "react";
 import { GetServerSidePropsContext } from "next";
 
-import { ProductData } from "@/db/sqlite/db-types";
-
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-
 import { allProducts, searchProducts } from "@/services/gql";
 import { apolloClient } from "@/services/apolloClient";
 
-type ProductProps = {
-    products: Array<ProductData>;
+import { Product } from "@ap-monorepo/api/src/graphql";
+
+export type ProductProps = {
+    products: Array<Product>;
 };
 
 export default function Products({ products }: ProductProps) {

@@ -1,12 +1,12 @@
-import React from "react";
-import clsx from "clsx";
+import { inputLabelClasses } from "@mui/material/InputLabel";
+import { selectClasses } from "@mui/material/Select";
 import { styled, Theme } from "@mui/material/styles";
 import MuiTextField, {
     FilledTextFieldProps,
     StandardTextFieldProps,
 } from "@mui/material/TextField";
-import { selectClasses } from "@mui/material/Select";
-import { inputLabelClasses } from "@mui/material/InputLabel";
+import clsx from "clsx";
+import React from "react";
 
 const inputStyleMappingClasses = {
     small: "TextField-inputSizeSmall",
@@ -74,13 +74,14 @@ const styles = ({ theme }: { theme: Theme }) => ({
     },
 });
 
-export interface TextFieldProps
-    extends Omit<FilledTextFieldProps | StandardTextFieldProps, "size"> {
+const TextFieldRoot = styled(MuiTextField)(styles);
+
+export interface TextFieldProps extends Omit<StandardTextFieldProps, "size"> {
     noBorder?: boolean;
     size?: "small" | "medium" | "large" | "xlarge";
 }
 
-function CustomTextField(props: TextFieldProps) {
+export function TextField(props: TextFieldProps) {
     const {
         InputProps = {},
         InputLabelProps,
@@ -89,6 +90,7 @@ function CustomTextField(props: TextFieldProps) {
         SelectProps,
         ...other
     } = props;
+
     const {
         classes: {
             input: InputPropsClassesInput,
@@ -98,7 +100,7 @@ function CustomTextField(props: TextFieldProps) {
     } = InputProps;
 
     return (
-        <MuiTextField
+        <TextFieldRoot
             InputProps={{
                 classes: {
                     root: classes.root,
@@ -123,5 +125,3 @@ function CustomTextField(props: TextFieldProps) {
         />
     );
 }
-
-export const TextField = styled(CustomTextField)(styles);
